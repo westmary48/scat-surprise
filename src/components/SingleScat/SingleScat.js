@@ -5,8 +5,8 @@ import './SingleScat.scss';
 class SingleScat extends React.Component {
   render() {
     return (
-      <div className="SinleScat">
-        <h1>Sinle Scat</h1>
+      <div className="SingleScat">
+        <h1>Single Scat</h1>
       </div>
     );
   }
