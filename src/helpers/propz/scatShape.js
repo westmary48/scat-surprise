@@ -6,7 +6,7 @@ const scatShape = PropTypes.shape({
   weight: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   sampleName: PropTypes.string.isRequired,
-  animal: PropTypes.bool.isRequired,
+  animal: PropTypes.string.isRequired,
 });
 
 export default { scatShape };
