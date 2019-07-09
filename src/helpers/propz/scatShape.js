@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 const scatShape = PropTypes.shape({
+  id: PropTypes.string.isRequired,
   uid: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   weight: PropTypes.string.isRequired,
