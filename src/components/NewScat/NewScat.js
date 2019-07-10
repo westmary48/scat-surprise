@@ -1,5 +1,11 @@
 import React from 'react';
 
+import firebase from 'firebase/app';
+
+import 'firebase/auth';
+
+import scatData from '../../helpers/data/scatsData';
+
 import './NewScat.scss';
 
 const defaultScat = {
@@ -33,6 +39,16 @@ formFieldStringState = (name, e) => {
 
   animalChange = e => this.formFieldStringState('animal', e);
 
+
+  formSubmit = (e) => {
+    e.preventDefault();
+    const saveMe = { ...this.state.newScat };
+    saveMe.uid = firebase.auth().currentUser.uid;
+    scatData.postScat(saveMe)
+      .then(() => this.props.history.push('/home'))
+      .catch(err => console.error('unable to save', err));
+  }
+
   // sampleNameChange = (e) => {
   //   const tempScat = { ...this.state.newScat };
   //   tempScat['sampleName'] = e.target.value;
@@ -49,11 +65,11 @@ formFieldStringState = (name, e) => {
     return (
       <div className="NewSct">
         <h1>New Scat</h1>
-        <form>
+        <form onSubmit = {this.formSubmit}>
           <div className="form-group">
           <label htmlFor="sampleName">Sample Name</label>
             <input
-            type="email"
+            type="text"
             className="form-control"
             id="sampleName"
             placeholder="Sample Name"
@@ -64,7 +80,7 @@ formFieldStringState = (name, e) => {
             <div className="form-group">
           <label htmlFor="color">Color</label>
             <input
-            type="email"
+            type="text"
             className="form-control"
             id="color"
             placeholder="brown"
@@ -75,7 +91,7 @@ formFieldStringState = (name, e) => {
             <div className="form-group">
           <label htmlFor="weight">Weight</label>
             <input
-            type="email"
+            type="text"
             className="form-control"
             id="weight"
             placeholder="12g"
@@ -86,7 +102,7 @@ formFieldStringState = (name, e) => {
             <div className="form-group">
           <label htmlFor="animal">Animal</label>
             <input
-            type="email"
+            type="text"
             className="form-control"
             id="animal"
             placeholder="animal"
@@ -97,7 +113,7 @@ formFieldStringState = (name, e) => {
             <div className="form-group">
           <label htmlFor="location">Location</label>
             <input
-            type="email"
+            type="text"
             className="form-control"
             id="location"
             placeholder="location"
@@ -105,7 +121,7 @@ formFieldStringState = (name, e) => {
             onChange = {this.locationChange}
             />
             </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">Save Scat</button>
         </form>
       </div>
     );
