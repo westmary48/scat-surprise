@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-
 import scatShape from '../../helpers/propz/scatShape';
+
 import './ScatCard.scss';
 
 class ScatCard extends React.Component {
@@ -23,16 +23,18 @@ class ScatCard extends React.Component {
   render() {
     const { scat } = this.props;
     const singleLink = `/scat/${scat.id}`;
+    const editLink = `/edit/${scat.id}`;
     return (
       <div className="ScatCard col-4">
         <div className="card">
-  <div className="card-body">
-    <h5 className="card-title">{scat.sampleName}</h5>
-    <Link className= "btn btn-success" to={singleLink}>View</Link>
-    <p className="card-text">{scat.location}</p>
-    <a href="#" className="btn btn-primary" onClick= {this.deleteMe}>Delete</a>
-  </div>
-  </div>
+          <div className="card-body">
+            <h5 className="card-title">{scat.sampleName}</h5>
+            <Link className= "btn btn-success" to={singleLink}>View</Link>
+            <p className="card-text">{scat.location}</p>
+            <Link className= "btn btn-danger" to={editLink}>Edit</Link>
+            <button className="btn btn-primary" onClick= {this.deleteMe}>Delete</button>
+          </div>
+        </div>
       </div>
     );
   }
